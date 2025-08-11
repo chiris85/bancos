@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: credit-transaction-api
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: credit-transaction-api
+  template:
+    metadata:
+      labels:
+        app: credit-transaction-api
+    spec:
+      containers:
+        - name: credit-transaction-api
+          image: gcr.io/${GCP_PROJECT_ID}/credit-transaction-api:latest
+          env:
+            - name: GCP_PROJECT_ID
+              value: ${GCP_PROJECT_ID}
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /path/to/service-account-key.json
+          volumeMounts:
+            - name: service-account-key
+              mountPath: /path/to
+              readOnly: true
+      volumes:
+        - name: service-account-key
+          secret:
+            secretName: pubsub-service-account-key

@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    gcp:
+      pubsub:
+        project-id: ${GCP_PROJECT_ID:default-project-id}
+        credentials:
+          location: file:/path/to/service-account-key.json
+      topic: credit-transactions
+server:
+  port: 8080
