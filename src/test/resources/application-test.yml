@@ -2,9 +2,7 @@ spring:
   cloud:
     gcp:
       pubsub:
-        project-id: ${GCP_PROJECT_ID:notional-plate-468414-c9}
+        project-id: test-project
         credentials:
-          location: file:C:/Users/chris/.gcp/notional-plate-468414-c9-1c0e4fd5f05e.json
-      topic: bancosTopic
-server:
-  port: 8080
+          location: classpath:dummy-gcp-credentials.json
+        topic: test-topic
