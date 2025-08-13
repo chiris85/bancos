@@ -16,7 +16,7 @@ public class PubSubController {
     private final String topicName;
 
     public PubSubController(PubSubTemplate pubSubTemplate, ObjectMapper objectMapper,
-                            @Value("${gcp.pubsub.topic}") String topicName) {
+                            @Value("${PUBSUB_TOPIC:bancosTopic}") String topicName) {
         this.pubSubTemplate = pubSubTemplate;
         this.objectMapper = objectMapper;
         this.topicName = topicName;

@@ -2,7 +2,17 @@ spring:
   cloud:
     gcp:
       pubsub:
-        project-id: test-project
+        project-id: ${GCP_PROJECT_ID:notional-plate-468414-c9}
         credentials:
-          location: classpath:dummy-gcp-credentials.json
-        topic: test-topic
+          location: file:/C:/Users/chris/.gcp/notional-plate-468414-c9-1c0e4fd5f05e.json
+        topic: ${PUBSUB_TOPIC:bancosTopic}
+
+logging:
+  level:
+    root: INFO
+    io.grpc: WARN
+    io.grpc.netty: ERROR
+    io.grpc.netty.shaded: ERROR
+    com.google.api: WARN
+    com.google.cloud: WARN
+    org.springframework.cloud.gcp: WARN

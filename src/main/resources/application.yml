@@ -4,5 +4,5 @@ spring:
       pubsub:
         project-id: ${GCP_PROJECT_ID:notional-plate-468414-c9}
         credentials:
-          location: ${GCP_CREDENTIALS_PATH:file:C:/Users/chris/.gcp/notional-plate-468414-c9-1c0e4fd5f05e.json}
+          location: file:/C:/Users/chris/.gcp/notional-plate-468414-c9-1c0e4fd5f05e.json
         topic: ${PUBSUB_TOPIC:bancosTopic}

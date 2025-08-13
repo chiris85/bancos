@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.5.4'
+	id 'org.springframework.boot' version '3.2.5'
 	id 'io.spring.dependency-management' version '1.1.6'
 }
 
@@ -15,17 +15,32 @@ repositories {
 	mavenCentral()
 }
 
+// BOM para la gestión de dependencias de Spring Cloud GCP
+ext {
+	// La versión 5.1.0 es compatible con Spring Boot 3.2.x
+	set('springCloudGcpVersion', "5.1.0")
+}
+
+dependencyManagement {
+	imports {
+		// Importa el BOM de Spring Cloud GCP
+		mavenBom "com.google.cloud:spring-cloud-gcp-dependencies:${springCloudGcpVersion}"
+		// NO es necesario importar el BOM de Spring Cloud aquí
+	}
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'com.google.cloud:spring-cloud-gcp-starter-pubsub:6.1.1'
+	// Ahora que el BOM de GCP está importado, puedes dejar la versión en blanco
+	implementation 'com.google.cloud:spring-cloud-gcp-starter-pubsub'
 	implementation 'org.springframework.boot:spring-boot-starter-integration'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.junit.jupiter:junit-jupiter-api'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 
-	compileOnly 'org.projectlombok:lombok:1.18.34'
-	annotationProcessor 'org.projectlombok:lombok:1.18.34'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {
