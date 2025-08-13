@@ -5,7 +5,7 @@ spring:
         enabled: false
         project-id: test-project-id
         credentials:
-          location: file:C:/Users/chris/.gcp/service-account-key-v2.json
+          location: classpath:dummy-gcp-credentials.json
         topic: credit-transactions
   server:
     port: 8080
